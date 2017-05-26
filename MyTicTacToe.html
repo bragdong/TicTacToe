@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title> Tic Tac Toe </title>
+  </head>
+
+  <body>
+    <button id="number_button" type="button" name="button">Reset Game</button>
+    <div id="msg_div" class="msg">
+    </div>
+
+    <h1> TIC TAC TOE </h1>
+
+    <div id="board">
+      <table>
+        <tr id="row1">
+          <!-- <td class="square" idx="0" bgcolor="Red"> </td> -->
+          <td class="square" idx="0" > </td>
+          <td class="square" idx="1" ></td>
+          <td class="square" idx="2" ></td>
+        </tr>
+        <tr id="row2">
+          <td class="square" idx="3" ></td>
+          <td class="square" idx="4" ></td>
+          <td class="square" idx="5" ></td>
+        </tr>
+        <tr id="row3">
+          <td class="square" idx="6" ></td>
+          <td class="square" idx="7" ></td>
+          <td class="square" idx="8" ></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <script>
+
+// var x =  document.getElementById("row1");
+// var y =  document.getElementById("row2");
+// var z =  document.getElementById("row3");
+
+
+  var turn="X"; // X player goes first
+  var maxTurns=0;
+  var winner=false;
+  var sqr1 = ""; // Simple Game so store Board in Globals
+  var sqr2 = "";
+  var sqr3 = "";
+  var sqr4 = "";
+  var sqr5 = "";
+  var sqr6 = "";
+  var sqr7 = "";
+  var sqr8 = "";
+  var sqr9 = "";
+
+  var numberButton = document.getElementById('number_button');
+  var msgDiv = document.getElementById('msg_div');
+  numberButton.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      boardInit();
+  });
+function boardInit() {
+  // var maxTurns=0;
+  maxTurns=0;
+  winner=false;
+  sqr1 = "";
+  sqr2 = "";
+  sqr3 = "";
+  sqr4 = "";
+  sqr5 = "";
+  sqr6 = "";
+  sqr7 = "";
+  sqr8 = "";
+  sqr9 = "";
+  turn=""; // X player goes first
+  // var turn="";
+  row1.children[0].innerHTML = turn;
+  row1.children[1].innerHTML = turn;
+  row1.children[2].innerHTML = turn;
+  row2.children[0].innerHTML = turn;
+  row2.children[1].innerHTML = turn;
+  row2.children[2].innerHTML = turn
+  row3.children[0].innerHTML = turn;
+  row3.children[1].innerHTML = turn;
+  row3.children[2].innerHTML = turn;
+  msgDiv.innerHTML="&nbsp";
+  turn="X"; // X player goes first
+}
+
+function checkX() {
+  if(sqr1 == turn && sqr2 == turn && sqr3 == turn) {
+    // alert("Player "+turn+" Wins!");
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr4 == turn && sqr5 == turn && sqr6 == turn) {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr7 == turn && sqr8 == turn && sqr9 == turn) {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr1 == turn && sqr5 == turn && sqr9 == turn) {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr1 == turn && sqr4 == turn && sqr7 == turn) {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr2 == turn && sqr5 == turn && sqr8 == turn)
+  {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr3 == turn && sqr6 == turn && sqr9 == turn)
+  {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr1 == turn && sqr5 == turn && sqr9 == turn)
+  {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(sqr3 == turn && sqr5 == turn && sqr7 == turn)
+  {
+    msgDiv.innerHTML="Player "+turn+" Wins!";
+    winner=true;
+  }
+  else if(maxTurns===9)
+  {
+    msgDiv.innerHTML="Game is a Draw!";
+  }
+}
+
+function updateTurn() {
+  if (turn==="X"){
+    turn="O";
+  } else{
+    turn="X";
+  }
+}
+    function markSquare(el) {
+      // console.log(typeof(el.innerHTML));
+      // console.log(el.innerHTML);
+      if (el.innerHTML===" " || el.innerHTML===""){
+        el.innerHTML = turn;
+        maxTurns++;
+        }
+      else{
+        alert("Box already entered. Try again.");
+        return false;
+      }
+      return true;
+    }
+    row1.addEventListener('click', function(evt) {
+        // console.log(evt);
+
+      if(!winner && maxTurns<9){
+          if (evt.target === row1.children[0]) {
+              sqr1=turn;
+              if(markSquare(row1.children[0])){
+                checkX();
+                updateTurn();
+              }
+          } else if (evt.target === row1.children[1]) {
+              sqr2=turn;
+              if(markSquare(row1.children[1])){
+                checkX();
+                updateTurn();
+              }
+
+          } else if (evt.target === row1.children[2]) {
+              sqr3=turn;
+              if(markSquare(row1.children[2])){
+                checkX();
+                updateTurn();
+              }
+          }
+        }
+
+    });
+
+    row2.addEventListener('click', function(evt) {
+        // console.log(evt);
+      if (!winner && maxTurns<9) {
+        if (evt.target === row2.children[0]) {
+          sqr4=turn;
+          if(markSquare(row2.children[0])){
+            checkX();
+            updateTurn();
+          }
+        } else if (evt.target === row2.children[1]) {
+          sqr5=turn;
+          if(markSquare(row2.children[1])){
+            checkX();
+            updateTurn();
+          }
+        } else if (evt.target === row2.children[2]) {
+          sqr6=turn;
+          if(markSquare(row2.children[2])){
+            checkX();
+            updateTurn();
+          }
+        }
+      }
+
+    });
+
+    row3.addEventListener('click', function(evt) {
+        // console.log(evt);
+      if (!winner && maxTurns<9) {
+        if (evt.target === row3.children[0]) {
+          sqr7=turn;
+          if(markSquare(row3.children[0])){
+            checkX();
+            updateTurn();
+          }
+
+        } else if (evt.target === row3.children[1]) {
+          sqr8=turn;
+          if(markSquare(row3.children[1])){
+            checkX();
+            updateTurn();
+          }
+        } else if (evt.target === row3.children[2]) {
+          sqr9=turn;
+          if(markSquare(row3.children[2])){
+            checkX();
+            updateTurn();
+          }
+        }
+      }
+
+    });
+    </script>
+
+  </body>
+</html>
